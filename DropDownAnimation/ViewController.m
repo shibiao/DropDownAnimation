@@ -17,23 +17,23 @@
 @end
 
 @implementation ViewController
-//grayLayer懒加载
--(CAShapeLayer *)grayLayer{
-    if (!_shapLayer) {
-        _shapLayer = [[CAShapeLayer alloc]init];
-        self.grayLayer.path = [self customPath].CGPath;
-        _shapLayer.fillColor = [UIColor colorWithRed:0.06 green:0.42 blue:0.84 alpha:0.5].CGColor;
-        _shapLayer.lineJoin = kCALineJoinRound;
-        _shapLayer.lineCap = kCALineCapRound;
-    }
-    return _shapLayer;
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     _oldY = 0;
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(hanlePanGesture:)];
     [self.tableView addGestureRecognizer:panGesture];
     
+}
+//shapLayer懒加载
+-(CAShapeLayer *)shapLayer{
+    if (!_shapLayer) {
+        _shapLayer = [[CAShapeLayer alloc]init];
+        self.shapLayer.path = [self customPath].CGPath;
+        _shapLayer.fillColor = [UIColor colorWithRed:0.06 green:0.42 blue:0.84 alpha:0.5].CGColor;
+        _shapLayer.lineJoin = kCALineJoinRound;
+        _shapLayer.lineCap = kCALineCapRound;
+    }
+    return _shapLayer;
 }
 //获取点击位置
 -(void)hanlePanGesture:(UIPanGestureRecognizer *)gesture{
@@ -51,7 +51,7 @@
         self.cp = CGPointMake(point.x, 64 + y);
     }
     //更新路径
-    self.grayLayer.path = [self customPath].CGPath;
+    self.shapLayer.path = [self customPath].CGPath;
     [self.view.layer setNeedsDisplay];
 }
 
