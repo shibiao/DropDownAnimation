@@ -22,7 +22,7 @@
     if (!_shapLayer) {
         _shapLayer = [[CAShapeLayer alloc]init];
         self.grayLayer.path = [self customPath].CGPath;
-        _shapLayer.fillColor = [UIColor blueColor].CGColor;
+        _shapLayer.fillColor = [UIColor colorWithRed:0.06 green:0.42 blue:0.84 alpha:0.5].CGColor;
         _shapLayer.lineJoin = kCALineJoinRound;
         _shapLayer.lineCap = kCALineCapRound;
     }
